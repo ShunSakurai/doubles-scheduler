@@ -1,7 +1,8 @@
 # app.py  ―  Streamlit GUI with running history
-import streamlit as st
 from doubles_cli import DoublesScheduler
+from streamlit_autorefresh import st_autorefresh
 import pandas as pd
+import streamlit as st
 
 st.set_page_config(
     page_title="ダブルス組み合わせ生成", page_icon="🏸", layout="centered"
@@ -17,6 +18,8 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+st_autorefresh(interval=9 * 60 * 1000, limit=None, key="keep_alive")
 
 # ──────────────────────────────────
 # サイドバー：設定とリセット
