@@ -8,13 +8,14 @@ st.set_page_config(
     page_title="ダブルス組み合わせ生成", page_icon="🏸", layout="centered"
 )
 
-st_autorefresh(interval=9 * 60 * 1000, limit=None, key="keep_alive")
+st_autorefresh(interval=8 * 60 * 1000, limit=None, key="keep_alive")
 
 st.markdown(
     """
     <style>
-      .court-line{font-size:1.5rem;font-weight:600;margin-bottom:0.2rem;}
-      .rest-line{font-size:1.2rem;margin-top:0.3rem;}
+      .court-line{font-size:2rem;font-weight:600;margin-bottom:0.2rem;}
+      .rest-line{font-size:1.8rem;margin-top:0.2rem;}
+      .round-block{margin-bottom:0.5rem;}
       .round-block.current{border:4px solid var(--primary-color, #1f77b4);border-radius:8px;}
     </style>
     """,
@@ -87,7 +88,7 @@ for idx, (rnd, sched) in enumerate(st.session_state.history):
     cls = "round-block current" if is_current else "round-block"
 
     block_html = [f'<div class="{cls}">']
-    block_html.append(f"<h3>ラウンド {rnd}</h3>")
+    block_html.append(f"<h2>ラウンド {rnd}</h2>")
 
     # 各コートのペア表示
     for court in sorted(k for k in sched if k != "Rest"):
